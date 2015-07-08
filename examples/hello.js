@@ -38,7 +38,7 @@ var helloChar = new Characteristic(
                 helloCharImpl);
 
 var helloService = new Service(
-                    'confService',
+                    'helloService',
                     '88888888-1111-2222-3333-56789dddddd0',
                     true,
                     [helloChar]);
