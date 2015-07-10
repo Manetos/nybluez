@@ -47,5 +47,11 @@ bluezManager.init(function(err) {
     if (err) {
         throw err;
     }
-    bluezManager.registerBleServices([helloService]);
+    bluezManager.registerBleServices([helloService], function (err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log('Services registered successfully!');
+    });
 });
