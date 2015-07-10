@@ -1,6 +1,6 @@
 {
   "name": "nybluez",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A node.js wrapper for Bluez Dbus API for peripherals ",
   "main": "index.js",
   "scripts": {
