@@ -3,8 +3,8 @@ var nybluez = require('../');
 var Service = nybluez.Service;
 var Characteristic = nybluez.Characteristic;
 var Descriptor = nybluez.Descriptor;
-var bluezManager = nybluez.bluezManager;
 var Defs = nybluez.Defs;
+var bluezManager = nybluez.CreateBluezManager({legacyAdvertising: true});
 
 var helloCharUserDescriptorImpl = {
     ReadValue: function() {
