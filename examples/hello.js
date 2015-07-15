@@ -55,3 +55,12 @@ bluezManager.init(function(err) {
         console.log('Services registered successfully!');
     });
 });
+
+process.on('SIGINT', function() {
+    bluezManager.close(function(err) {
+        if (err) {
+            console.log('Bluez Manager Close', err);
+        }
+        process.exit();
+    });
+});
