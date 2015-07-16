@@ -1,4 +1,7 @@
 # Disabling Classic Bluetooth
+BR/EDR is enabled automatically so the recepients of the advertisement packets think that the device supports Classic bluetooth as well.
+When tried to connect from Android device, it tried to do pairing using Classic Bluetooth.
+Asked in the bluez mailgroup how to enable LE only and the answer is below.
 
 ## Information from the Bluez mailing group
 You could try setting ControllerMode=le in the [General] section of
