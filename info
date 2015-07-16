@@ -1,0 +1,8 @@
+# Disabling Classic Bluetooth
+
+## Information from the Bluez mailing group
+You could try setting ControllerMode=le in the [General] section of
+/etc/bluetooth/main.conf and restart bluetoothd. Another option is to
+disable BR/EDR manually with btmgmt ("btmgmt bredr off").
+In the latter case, you need to power off the adapter before you can disable BR/EDR, i.e. "btmgmt power
+off".
