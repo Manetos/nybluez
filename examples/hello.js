@@ -3,8 +3,8 @@ var nybluez = require('../');
 var Service = nybluez.Service;
 var Characteristic = nybluez.Characteristic;
 var Descriptor = nybluez.Descriptor;
-var bluezManager = nybluez.bluezManager;
 var Defs = nybluez.Defs;
+var bluezManager = nybluez.CreateBluezManager({legacyAdvertising: true});
 
 var helloCharUserDescriptorImpl = {
     ReadValue: function() {
@@ -53,5 +53,14 @@ bluezManager.init(function(err) {
             return;
         }
         console.log('Services registered successfully!');
+    });
+});
+
+process.on('SIGINT', function() {
+    bluezManager.close(function(err) {
+        if (err) {
+            console.log('Bluez Manager Close', err);
+        }
+        process.exit();
     });
 });
