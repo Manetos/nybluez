@@ -1,10 +1,11 @@
 'use strict';
 var nybluez = require('../');
 var Service = nybluez.Service;
+var Advertisement = nybluez.Advertisement;
 var Characteristic = nybluez.Characteristic;
 var Descriptor = nybluez.Descriptor;
 var Defs = nybluez.Defs;
-var bluezManager = nybluez.CreateBluezManager({legacyAdvertising: true});
+var bluezManager = nybluez.CreateBluezManager({legacyAdvertising: false});
 
 var helloCharUserDescriptorImpl = {
     ReadValue: function() {
@@ -43,17 +44,18 @@ var helloService = new Service(
                     true,
                     [helloChar]);
 
-bluezManager.init(function(err) {
+var bleConfig = {
+    services: [helloService],
+    advertisement: new Advertisement('advertisement', 'peripheral', {
+                        service_uuids: ['88888888-1111-2222-3333-56789dddddd0'],
+                        manufacturer_data: [0xffff, [0x00]]})
+};
+
+bluezManager.start(bleConfig, function(err) {
     if (err) {
-        throw err;
+        return console.error(err);
     }
-    bluezManager.registerBleServices([helloService], function (err) {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        console.log('Services registered successfully!');
-    });
+    console.log('Services Registered & Advertising!');
 });
 
 process.on('SIGINT', function() {
