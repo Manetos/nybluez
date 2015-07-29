@@ -45,9 +45,9 @@ function detect(cb) {
         //Check if it is bluez 5 or 4
         function(cb) {
             checkIface(dbus, Defs.Dbus.BLUEZ_OBJ_MANAGER_INTERFACE, function(err, obj) {
-                if (err) {
-                    checkIface(dbus, BLUEZ4_MANAGER_INTERFACE, function(err) {
-                        if (!err) {
+                if (err || !obj) {
+                    checkIface(dbus, BLUEZ4_MANAGER_INTERFACE, function(err, obj) {
+                        if (!err && obj) {
                             dbusSupport.bluez = 4;
                         }
                         return cb();
